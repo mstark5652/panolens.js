@@ -31,7 +31,7 @@
 
 		this.scale.set( scale, scale, 1 );
 		this.rotation.y = Math.PI;
-		this.scaleFactor = 1.3;
+		this.scaleFactor = 1.1;
 
 		this.container;
 
@@ -43,7 +43,7 @@
 		function postLoad ( texture ) {
 
 			texture.wrapS = THREE.RepeatWrapping;
-			texture.repeat.x = - 1;
+			// texture.repeat.x = - 1;
 
 			texture.image.width = texture.image.naturalWidth || 64;
 			texture.image.height = texture.image.naturalHeight || 64;
@@ -94,8 +94,8 @@
 		// Attach event listeners
 		this.addEventListener( 'click', this.onClick );
 		this.addEventListener( 'hover', this.onHover );
-		this.addEventListener( 'hoverenter', this.onHoverStart );
-		this.addEventListener( 'hoverleave', this.onHoverEnd );
+		// this.addEventListener( 'hoverenter', this.onHoverStart );
+		// this.addEventListener( 'hoverleave', this.onHoverEnd );
 		this.addEventListener( 'panolens-dual-eye-effect', this.onDualEyeEffect );
 		this.addEventListener( 'panolens-container', this.setContainer.bind( this ) );
 		this.addEventListener( 'dismiss', this.onDismiss );
@@ -445,7 +445,8 @@
 			this.element.style.position = 'absolute';
 			this.element.classList.add( 'panolens-infospot' );
 			this.element.verticalDelta = delta !== undefined ? delta : 40;
-
+			
+			this.element.onclick = this.onDismiss;
 		}
 
 	};

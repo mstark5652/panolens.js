@@ -6592,7 +6592,7 @@ PANOLENS.StereographicShader = {
 
 		this.scale.set( scale, scale, 1 );
 		this.rotation.y = Math.PI;
-		this.scaleFactor = 1.3;
+		this.scaleFactor = 1.1;
 
 		this.container;
 
@@ -6604,7 +6604,7 @@ PANOLENS.StereographicShader = {
 		function postLoad ( texture ) {
 
 			texture.wrapS = THREE.RepeatWrapping;
-			texture.repeat.x = - 1;
+			// texture.repeat.x = - 1;
 
 			texture.image.width = texture.image.naturalWidth || 64;
 			texture.image.height = texture.image.naturalHeight || 64;
@@ -6655,8 +6655,8 @@ PANOLENS.StereographicShader = {
 		// Attach event listeners
 		this.addEventListener( 'click', this.onClick );
 		this.addEventListener( 'hover', this.onHover );
-		this.addEventListener( 'hoverenter', this.onHoverStart );
-		this.addEventListener( 'hoverleave', this.onHoverEnd );
+		// this.addEventListener( 'hoverenter', this.onHoverStart );
+		// this.addEventListener( 'hoverleave', this.onHoverEnd );
 		this.addEventListener( 'panolens-dual-eye-effect', this.onDualEyeEffect );
 		this.addEventListener( 'panolens-container', this.setContainer.bind( this ) );
 		this.addEventListener( 'dismiss', this.onDismiss );
@@ -7006,7 +7006,8 @@ PANOLENS.StereographicShader = {
 			this.element.style.position = 'absolute';
 			this.element.classList.add( 'panolens-infospot' );
 			this.element.verticalDelta = delta !== undefined ? delta : 40;
-
+			
+			this.element.onclick = this.onDismiss;
 		}
 
 	};
@@ -8904,9 +8905,9 @@ PANOLENS.StereographicShader = {
 			viewIndicatorDiv.style.width = scope.viewIndicatorSize + "px";
 			viewIndicatorDiv.style.height = scope.viewIndicatorSize + "px";
 			viewIndicatorDiv.style.position = "absolute";
-			viewIndicatorDiv.style.top = "10px";
-			viewIndicatorDiv.style.left = "10px";
-			viewIndicatorDiv.style.opacity = "0.5";
+			viewIndicatorDiv.style.top = "50%";
+			viewIndicatorDiv.style.right = "10px";
+			viewIndicatorDiv.style.opacity = "1.0";
 			viewIndicatorDiv.style.cursor = "pointer";
 			viewIndicatorDiv.id = "panolens-view-indicator-container";
 

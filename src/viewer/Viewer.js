@@ -1757,9 +1757,9 @@
 			viewIndicatorDiv.style.width = scope.viewIndicatorSize + "px";
 			viewIndicatorDiv.style.height = scope.viewIndicatorSize + "px";
 			viewIndicatorDiv.style.position = "absolute";
-			viewIndicatorDiv.style.top = "10px";
-			viewIndicatorDiv.style.left = "10px";
-			viewIndicatorDiv.style.opacity = "0.5";
+			viewIndicatorDiv.style.top = "50%";
+			viewIndicatorDiv.style.right = "10px";
+			viewIndicatorDiv.style.opacity = "1.0";
 			viewIndicatorDiv.style.cursor = "pointer";
 			viewIndicatorDiv.id = "panolens-view-indicator-container";
 
