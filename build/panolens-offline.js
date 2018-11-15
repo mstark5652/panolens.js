@@ -6658,7 +6658,10 @@ PANOLENS.StereographicShader = {
 
 	};
 
+	
+
 	PANOLENS.Infospot.prototype = Object.create( THREE.Sprite.prototype );
+
 
 	/**
 	 * Set infospot container
@@ -6714,7 +6717,7 @@ PANOLENS.StereographicShader = {
 			this.lockHoverElement();
 
 		}
-
+		this.dispatchEvent({ type: "infospot-click", data: this });
 	};
 
 	/**
@@ -6786,6 +6789,8 @@ PANOLENS.StereographicShader = {
 			}
 			
 		}
+
+		this.dispatchEvent({ type: "infospot-modal-appear", data: this });
 
 	};
 
@@ -7000,9 +7005,16 @@ PANOLENS.StereographicShader = {
 			this.element.style.position = 'absolute';
 			this.element.classList.add( 'panolens-infospot' );
 			this.element.verticalDelta = delta !== undefined ? delta : 40;
-			
-			this.element.onclick = this.onDismiss;
+
+			this.element.onclick = this.onModalClick.bind(this);
 		}
+
+	};
+
+	PANOLENS.Infospot.prototype.onModalClick = function () {
+		
+		this.onDismiss();
+		this.dispatchEvent({ type: "infospot-modal-dismiss", data: this });
 
 	};
 
@@ -7119,7 +7131,6 @@ PANOLENS.StereographicShader = {
 
 			this.HANDLER_FOCUS( this.position, duration, easing );
 			this.onDismiss();
-
 		}
 
 	};
