@@ -43,7 +43,7 @@
 		function postLoad ( texture ) {
 
 			texture.wrapS = THREE.RepeatWrapping;
-			// texture.repeat.x = - 1;
+			texture.repeat.x = - 1;
 
 			texture.image.width = texture.image.naturalWidth || 64;
 			texture.image.height = texture.image.naturalHeight || 64;
