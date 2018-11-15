@@ -6,8 +6,9 @@
 	 * @param {number} [scale=300] - Infospot scale
 	 * @param {imageSrc} [imageSrc=PANOLENS.DataImage.Info] - Image overlay info
 	 * @param {boolean} [animated=true] - Enable default hover animation
+	 * @param {number} [scaleFactor=1.1] - onHover/onClick scale factor 
 	 */
-	PANOLENS.Infospot = function ( scale, imageSrc, animated ) {
+	PANOLENS.Infospot = function ( scale, imageSrc, animated, scaleFactor ) {
 		
 		var scope = this, ratio, startScale, endScale, duration;
 
@@ -31,7 +32,7 @@
 
 		this.scale.set( scale, scale, 1 );
 		this.rotation.y = Math.PI;
-		this.scaleFactor = 1.1;
+		this.scaleFactor = scaleFactor || 1.1;
 
 		this.container;
 
@@ -232,7 +233,11 @@
 				this.element._height = this.element.clientHeight;
 
 			}
-			
+
+			var hideAnimation = new TWEEN.Tween(this.material)
+				.to({ opacity: 0 }, 500)
+				.easing(TWEEN.Easing.Quartic.Out);
+			hideAnimation.start();
 		}
 
 		this.dispatchEvent({ type: "infospot-modal-appear", data: this });
@@ -259,12 +264,17 @@
 
 		if ( this.element && !this.element.locked ) {
 
+			showAnimation = new TWEEN.Tween(this.material)
+				.to({ opacity: 1 }, 500)
+				.easing(TWEEN.Easing.Quartic.Out);
+			showAnimation.start();
+
 			this.element.style.display = 'none';
 			this.element.left && ( this.element.left.style.display = 'none' );
 			this.element.right && ( this.element.right.style.display = 'none' );
 
 			this.unlockHoverElement();
-
+			
 		}
 
 	};
