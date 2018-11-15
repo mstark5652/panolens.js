@@ -6794,7 +6794,6 @@ PANOLENS.StereographicShader = {
 				this.element._height = this.element.clientHeight;
 
 			}
-			// this.hide();
 
 			var hideAnimation = new TWEEN.Tween(this.material)
 				.to({ opacity: 0 }, 500)
