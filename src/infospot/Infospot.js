@@ -461,7 +461,8 @@
 			this.element.classList.add( 'panolens-infospot' );
 			this.element.verticalDelta = delta !== undefined ? delta : 40;
 
-			this.element.onclick = this.onModalClick.bind(this);
+			this.element.addEventListener("click", this.onModalClick.bind(this));
+			this.element.addEventListener("touchend", this.onModalClick.bind(this));
 		}
 
 	};
