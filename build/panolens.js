@@ -7185,6 +7185,7 @@ PANOLENS.StereographicShader = {
 	 * @param {boolean} [options.autoHideControlBar=false] - Auto hide control bar when click on non-active area
 	 * @param {boolean} [options.autoHideInfospot=true] - Auto hide infospots when click on non-active area
 	 * @param {boolean} [options.horizontalView=false] - Allow only horizontal camera control
+	 * @param {number} [options.polarModifier=0.0] - When horizontalView is true, this item can be adjusted to limit up/down panning
 	 * @param {number}  [options.clickTolerance=10] - Distance tolerance to tigger click / tap event
 	 * @param {number}  [options.cameraFov=60] - Camera field of view value
 	 * @param {boolean} [options.reverseDragging=false] - Reverse dragging direction
@@ -7214,6 +7215,7 @@ PANOLENS.StereographicShader = {
 		options.autoHideControlBar = options.autoHideControlBar !== undefined ? options.autoHideControlBar : false;
 		options.autoHideInfospot = options.autoHideInfospot !== undefined ? options.autoHideInfospot : true;
 		options.horizontalView = options.horizontalView !== undefined ? options.horizontalView : false;
+		options.polarModifier = options.polarModifier !== undefined ? options.polarModifier : 0.0;
 		options.clickTolerance = options.clickTolerance || 10;
 		options.cameraFov = options.cameraFov || 60;
 		options.reverseDragging = options.reverseDragging || false;
@@ -7352,8 +7354,8 @@ PANOLENS.StereographicShader = {
 
 		// Lock horizontal view
 		if ( this.options.horizontalView ) {
-			this.OrbitControls.minPolarAngle = Math.PI / 2;
-			this.OrbitControls.maxPolarAngle = Math.PI / 2;
+			this.OrbitControls.minPolarAngle = Math.PI / 2 - this.options.polarModifier;
+			this.OrbitControls.maxPolarAngle = Math.PI / 2 + this.options.polarModifier;
 		}
 
 		// Add Control UI
