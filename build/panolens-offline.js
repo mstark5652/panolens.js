@@ -6562,8 +6562,9 @@ PANOLENS.StereographicShader = {
 	 * @param {imageSrc} [imageSrc=PANOLENS.DataImage.Info] - Image overlay info
 	 * @param {boolean} [animated=true] - Enable default hover animation
 	 * @param {number} [scaleFactor=1.1] - onHover/onClick scale factor 
+	 * @param {THREE.Vector2} [center=THREE.Vector2(0.5, 0.5)] - center of material to place image
 	 */
-	PANOLENS.Infospot = function ( scale, imageSrc, animated, scaleFactor ) {
+	PANOLENS.Infospot = function ( scale, imageSrc, animated, scaleFactor, center ) {
 		
 		var scope = this, ratio, startScale, endScale, duration;
 
@@ -6574,7 +6575,8 @@ PANOLENS.StereographicShader = {
 		THREE.Sprite.call( this );
 
 		this.type = 'infospot';
-
+		this.center = center || new THREE.Vector2(0.5, 0.5);
+		
 		this.animated = animated !== undefined ? animated : true;
 		this.isHovering = false;
 		this.visible = false;
