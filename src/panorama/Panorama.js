@@ -27,6 +27,7 @@
 		this.container = undefined;
 
 		this.loaded = false;
+		this.texture = null;
 
 		this.linkedSpots = [];
 
@@ -281,6 +282,7 @@
 	 */
 	PANOLENS.Panorama.prototype.updateTexture = function ( texture ) {
 
+		this.texture = texture;
 		this.material.map = texture;
 
 		this.material.needsUpdate = true;
@@ -625,6 +627,8 @@
 			
 			object.geometry && object.geometry.dispose();
 			object.material && object.material.dispose();
+			object.texture && object.texture.dispose();
+			
 		}
 
 		recursiveDispose( this );

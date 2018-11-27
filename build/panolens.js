@@ -2813,6 +2813,7 @@ PANOLENS.StereographicShader = {
 		this.container = undefined;
 
 		this.loaded = false;
+		this.texture = null;
 
 		this.linkedSpots = [];
 
@@ -3067,6 +3068,7 @@ PANOLENS.StereographicShader = {
 	 */
 	PANOLENS.Panorama.prototype.updateTexture = function ( texture ) {
 
+		this.texture = texture;
 		this.material.map = texture;
 
 		this.material.needsUpdate = true;
@@ -3411,6 +3413,8 @@ PANOLENS.StereographicShader = {
 			
 			object.geometry && object.geometry.dispose();
 			object.material && object.material.dispose();
+			object.texture && object.texture.dispose();
+			
 		}
 
 		recursiveDispose( this );
