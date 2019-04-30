@@ -228,7 +228,9 @@
 
 				this.element.style.display = 'block';
 				this.element.left && ( this.element.left.style.display = 'none' );
-				this.element.right && ( this.element.right.style.display = 'none' );
+				this.element.right && (this.element.right.style.display = 'none');
+				
+				this.element.style.transform = "translate(0, 0)";
 
 				// Store element width for reference
 				this.element._width = this.element.clientWidth;
